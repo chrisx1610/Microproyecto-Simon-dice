@@ -1,0 +1,43 @@
+body {
+    background-color: black; 
+    color: white; 
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+
+h1 {
+    font-size: 2rem;
+    text-align: center;
+}
+
+div {
+    margin: 10px;
+}
+
+button {
+    background-color: #ff0000; 
+    color: white;
+    font-size: 1.2rem;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background-color: #ff00009d;
+}
+
+@media (max-width: 600px) {
+    button {
+        width: 100%;
+        font-size: 1rem;
+        padding: 10px;
+    }
+}

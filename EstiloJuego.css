@@ -1,0 +1,57 @@
+body {
+    background-color: black;
+    color: white;
+    font-family: Arial, sans-serif;
+    text-align: center;
+}
+
+h1 {
+    font-size: 2rem;
+}
+
+p {
+    font-size: 1.5rem;
+}
+
+.game-board {
+    display: grid;
+    grid-template-columns: repeat(2, 100px);
+    grid-gap: 10px;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.color-btn {
+    width: 100px;
+    height: 100px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.rojo { background-color: red; }
+.azul { background-color: blue; }
+.verde { background-color: green; }
+.amarillo { background-color: yellow; }
+
+.color-btn:hover {
+    transform: scale(1.1);
+}
+
+.flash{
+    opacity: 0.6;
+    transition: opacity 0.3s;
+}
+
+@media (max-width: 600px) {
+    .game-board {
+        grid-template-columns: repeat(2, 80px);
+    }
+
+    .color-btn {
+        width: 80px;
+        height: 80px;
+    }
+
+}
