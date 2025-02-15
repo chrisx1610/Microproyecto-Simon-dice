@@ -30,27 +30,17 @@ function inicializarPuntuacion(nombreJugador) {
 }
 
 function mostrarPuntuacion() {
+    const nombreJugador = localStorage.getItem('nombreJugador');
     const puntuaciones = JSON.parse(localStorage.getItem('puntuaciones')) || {};
-    const puntuacionesContainer = document.getElementById('puntuacionesContainer'); // Usar el contenedor existente
 
-    // Limpiar el contenedor antes de mostrar las puntuaciones
-    puntuacionesContainer.innerHTML = '';
-
-    // Verificar si hay puntuaciones guardadas
-    if (Object.keys(puntuaciones).length === 0) {
-        const mensajeElemento = document.createElement('p');
-        mensajeElemento.textContent = 'No hay ningún jugador guardado.';
-        puntuacionesContainer.appendChild(mensajeElemento);
+    if (nombreJugador && puntuaciones[nombreJugador] !== undefined) {
+        const nombreElemento = document.createElement('p');
+        nombreElemento.textContent = `${nombreJugador}: ${puntuaciones[nombreJugador]}`;
+        document.body.appendChild(nombreElemento);
     } else {
-        // Iterar sobre las puntuaciones y crear elementos para cada jugador
-        for (const jugador in puntuaciones) {
-            if (puntuaciones.hasOwnProperty(jugador)) {
-                const puntuacion = puntuaciones[jugador];
-                const jugadorElemento = document.createElement('p'); // Cambiado a 'p' para cada jugador
-                jugadorElemento.textContent = `${jugador}: ${puntuacion}`;
-                puntuacionesContainer.appendChild(jugadorElemento);
-            }
-        }
+        const mensajeElemento = document.createElement('p');
+        mensajeElemento.textContent = 'No hay jugador registrado.';
+        document.body.appendChild(mensajeElemento);
     }
 }
 
@@ -87,7 +77,7 @@ function mostrarSecuencia() {
 
         iluminarBoton(secuenciaJuego[i]);
         i++;
-    }, 1000); // Mayor tiempo entre luces para ver la secuencia
+    }, 1000); 
 }
 
 function iluminarBoton(color) {
@@ -123,24 +113,21 @@ function nuevaRonda() {
     nivel++;
     puntaje++
     puntuacionJugador.textContent = puntaje;
+
     const nombreJugador = localStorage.getItem('nombreJugador');
     let puntuaciones = JSON.parse(localStorage.getItem('puntuaciones')) || {};
     
-    // Asegúrate de que la puntuación se actualice correctamente
+
     if (puntuaciones[nombreJugador] !== undefined) {
-        puntuaciones[nombreJugador] = puntaje; // Actualiza la puntuación
-    } else {
-        puntuaciones[nombreJugador] = puntaje; // Si no existe, inicializa la puntuación
-    }
-    
-    localStorage.setItem('puntuaciones', JSON.stringify(puntuaciones));
+        puntuaciones[nombreJugador] = puntaje; 
+        localStorage.setItem('puntuaciones', JSON.stringify(puntuaciones));
     }
 
     const nuevoColor = obtenerColorAleatorio();
     secuenciaJuego.push(nuevoColor);
 
     setTimeout(mostrarSecuencia, 1000);
-
+}
 
 function gameOver() {
     alert(`¡Perdiste! Llegaste hasta el nivel ${nivel}`);
@@ -153,14 +140,14 @@ function gameOver() {
 
 }
 
-// Asignar eventos a los botones
+
 botones.forEach(boton => {
     boton.addEventListener("click", () => {
         manejarTurnoJugador(boton.dataset.color);
     });
 });
 
-// Iniciar el juego solo cuando el usuario haga clic en un botón
+
 document.addEventListener("DOMContentLoaded", () => {
     setTimeout(nuevaRonda, 2000);
 });
