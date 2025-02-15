@@ -21,6 +21,11 @@ p {
     margin-top: 20px;
 }
 
+div {
+    margin: 10px;
+}
+
+
 .color-btn {
     width: 100px;
     height: 100px;

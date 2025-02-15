@@ -2,9 +2,39 @@
 <html>
 <head>
     <title>Puntuaciones</title>
+    <link rel="stylesheet" href="EstiloPuntuacion.css">
 </head>
 <body>
     <h1>Puntuaciones de los jugadores!</h1>
+    <div id="puntuacionesContainer"></div> <!-- Contenedor para las puntuaciones -->
+
+    <script src="Juego.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            mostrarPuntuacion(); // Llama a la función para mostrar las puntuaciones
+        });
+
+        function mostrarPuntuacion() {
+            const puntuaciones = JSON.parse(localStorage.getItem('puntuaciones')) || {};
+            const puntuacionesContainer = document.getElementById('puntuacionesContainer'); // Usar el contenedor existente
+
+            // Limpiar el contenedor antes de mostrar las puntuaciones
+            puntuacionesContainer.innerHTML = '';
+
+            // Iterar sobre las puntuaciones y crear elementos para cada jugador
+            for (const jugador in puntuaciones) {
+                if (puntuaciones.hasOwnProperty(jugador)) {
+                    const puntuacion = puntuaciones[jugador];
+                    const jugadorElemento = document.createElement('p'); // Cambiado a 'p' para cada jugador
+                    jugadorElemento.textContent = `${jugador}: ${puntuacion}`;
+                    puntuacionesContainer.appendChild(jugadorElemento);
+                }
+            }
+        }
+    </script>
     
+    <div>
+        <a href="Inicio.html"><button>Volver al inicio</button></a>
+    </div>
 </body>
 </html>
