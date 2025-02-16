@@ -136,7 +136,7 @@ function gameOver() {
     nivel = 0;
     puntaje = 0;
     puntuacionJugador.textContent = "0";
-    window.location.href = 'Inicio.html'
+    window.location.href = 'index.html'
 
 }
 
